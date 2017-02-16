@@ -1,7 +1,7 @@
 '''
 
-Sentimenet analyses of pos.txtx and neg.txtx file with
-a collection of positive comments and negative coments
+Sentimenet analyses with a collection of positive 
+comments and negative coments
 
 '''
 import tensorflow as tf
@@ -19,13 +19,12 @@ n_classes = 2
 batch_size=32
 n_batches = int(1600000/batch_size)
 n_epochs = 10
+vocab_size = 2638
 
 x = tf.placeholder('float')
 y = tf.placeholder('float')
 
-# 2638 is the size of the vocab
-
-hl1 = {'weight':tf.Variable(tf.random_normal([2638, n_hl1_nodes])),
+hl1 = {'weight':tf.Variable(tf.random_normal([vocab_size, n_hl1_nodes])),
        'bias':tf.Variable(tf.random_normal([n_hl1_nodes]))}
 
 hl2 = {'weight':tf.Variable(tf.random_normal([n_hl1_nodes, n_hl2_nodes])),
@@ -57,7 +56,7 @@ def train_NN(x):
         sess.run(tf.initialize_all_variables())
         try:
             epoch = int(open(tf_log, 'r').read().split('\n')[-2])+1
-            print('STARTING:', epoch)
+            
         except:
             epoch = 1
 
