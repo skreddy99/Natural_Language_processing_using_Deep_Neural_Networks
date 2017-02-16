@@ -2,9 +2,8 @@
 
 Sentiment analyses for large dataset is slighlt different.
 The approcah to pre-process the data is very similar to what
-we did in small data project i.e. in the file Sentiment_Analyses.py.
-Here is the brief algorithm
-for pre-processing:
+I did in small data project i.e. in the file Sentiment_Analyses.py (for small dataset).
+Here is the brief algorithm for pre-processing:
 
 1. Get the statements sorted as positive and negative
 2. Store list of positive and negative statements in separate files
@@ -47,9 +46,9 @@ import pandas as pd
 
 lemm = WordNetLemmatizer()
 
-def init_process(fin, fout):
-    outfile = open(fout,'a')
-    with open(fin, buffering=200000,encoding='latin-1') as f:
+def extract_tweet_and_label(f_in, f_out):
+    outfile = open(f_out,'a')
+    with open(f_in, buffering=200000,encoding='latin-1') as f:
         try:
             for line in f:
                 line = line.replace('"','')
@@ -66,13 +65,13 @@ def init_process(fin, fout):
             print(str(e))
     outfile.close()
 
-init_process('training.1600000.processed.noemoticon.csv', 'training_large_dataset.csv')
-init_process('testdata.manual.2009.06.14.csv','test_large_dataset.csv')
+extract_tweet_and_label('training.1600000.processed.noemoticon.csv', 'training_large_dataset.csv')
+extract_tweet_and_label('testdata.manual.2009.06.14.csv','test_large_dataset.csv')
 
 
-def create_lexicon(fin):
+def create_lexicon(f_in):
     lexicon = []
-    with open(fin,'r', buffering=100000, encoding='latin-1') as f:
+    with open(f_in,'r', buffering=100000, encoding='latin-1') as f:
         try:
             counter = 1
             content = ''
@@ -87,7 +86,7 @@ def create_lexicon(fin):
                     print(counter, len(lexicon))
         except Exception as e:
             print(str(e))
-    with open('lexicon-2500-2638.pickle', 'wb') as f:
+    with open('lexicon.pickle', 'wb') as f:
         pickle.dump(lexicon,f)
 
 create_lexicon('training_large_dataset.csv')
@@ -115,10 +114,10 @@ def convert_to_vec(fin, fout, lexicon_pickle):
             outfile.write(outline)
         print(counter)
 
-convert_to_vec('test_large_dataset.csv', 'processed-test-set.csv', 'lexicon-2500-2638.pickle')
+convert_to_vec('test_large_dataset.csv', 'processed-test-set.csv', 'lexicon.pickle')
 
-def shuffle_data(fin):
-    df = pd.read_csv(fin, error_bad_lines=False)
+def shuffle_data(f_in):
+    df = pd.read_csv(f_in, error_bad_lines=False)
     df = df.iloc[np.random.permutation(len(df))]
     print(df.head)
     df.to_csv('train_set_shuffled.csv', index=False)
