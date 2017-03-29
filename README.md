@@ -21,7 +21,7 @@ I am currently working on getting higher accuracies will different hyper paramet
 
 
 Settings:
-Tensorflow: 1.0
+Tensorflow: 1.0,
 Python >= 3.5
 
 Execution steps:
