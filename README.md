@@ -29,8 +29,9 @@ Execution steps:
 Step1: Download the *.py files
 Step2: Download the datasets (training.1600000.processed.noemoticon.csv and testdata.manual.2009.06.14.csv) from the above link into the same directory
 Step3: Open and terminal window and type 
-        python utis_senti.py
-Step 4: After the successful completion of the above comman, run the next command
+        python utils_senti.py
+Step 4: The size of the lexicon is published in the window after the successful execution of utils_senti.py. Update the lexicon size in NN_senti.py 
+Step 5: Run the next command
         python NN_senti.py
         
 
