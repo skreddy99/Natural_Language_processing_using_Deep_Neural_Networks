@@ -18,3 +18,19 @@ For Hardcore enthusiasts: If you are highly interested in becoming an expert in 
 The files will have a day or two for compilation. If you have a faster instance on GCP or AWS, you are in better luck. A good GPU will also help.
 
 I am currently working on getting higher accuracies will different hyper parameters and other changes.
+
+
+Settings:
+Tensorflow: 1.0
+Python >= 3.5
+
+Execution steps:
+
+Step1: Download the *.py files
+Step2: Download the datasets (training.1600000.processed.noemoticon.csv and testdata.manual.2009.06.14.csv) from the above link into the same directory
+Step3: Open and terminal window and type 
+        python utis_senti.py
+Step 4: After the successful completion of the above comman, run the next command
+        python NN_senti.py
+        
+
